@@ -119,6 +119,7 @@ public class gameplay : MonoBehaviour
 					else
 					{
 						int index = Random.Range(0,2);
+						Debug.Log(index);
 						if(index==1)
 						{
 							re++;
@@ -148,7 +149,6 @@ public class gameplay : MonoBehaviour
 					if(index==1)
 					{
 						tap.Play();
-						score = score + 20;
 						timer = timer + 10f;
 						hit.collider.tag = "tower";
 					}	
@@ -156,6 +156,7 @@ public class gameplay : MonoBehaviour
 					{
 						re++;
 						timer = timer - 10f;
+						score = score + 100;
 						stone.Play();
 						hit.transform.gameObject.GetComponent<ai>().move = true;
 					}
@@ -185,7 +186,7 @@ public class gameplay : MonoBehaviour
 	{
 		re = 0;
 		combo = 0;
-		timer = 15f;
+		timer = 30f;
 		score = 0;
 		wave = 0;
 		bonus = 0;

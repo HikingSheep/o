@@ -34,7 +34,7 @@ public class ai : MonoBehaviour {
 		if(move)
 		{
 			this.GetComponent<Collider>().enabled = false;
-			this.transform.position = Vector3.Lerp(this.transform.position,targetDOWN,0.25f);
+			this.transform.position = Vector3.Lerp(this.transform.position,targetDOWN,0.5f);
 			if(this.transform.position==targetDOWN)
 			{
 				this.tag="node";

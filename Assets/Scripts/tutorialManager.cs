@@ -100,21 +100,24 @@ public class tutorialManager : MonoBehaviour
 				PageTwo();
 				break;
 			case 3:
-				PageThree();
+				PageTwo_half();
 				break;
 			case 4:
-				PageFour();
+				PageThree();
 				break;
 			case 5:
-				PageFive();
+				PageFour();
 				break;
 			case 6:
-				PageSix();
+				PageFive();
 				break;
 			case 7:
-				PageSeven();
+				PageSix();
 				break;
 			case 8:
+				PageSeven();
+				break;
+			case 9:
 				PageEight();
 				break;
 		}
@@ -127,6 +130,14 @@ public class tutorialManager : MonoBehaviour
 		up=true;
 	}
 	void PageTwo()
+	{
+		Debug.Log(page);
+		buttons[0].SetActive(true);
+		buttons[1].SetActive(true);
+
+		down = true;
+	}
+	void PageTwo_half()
 	{
 		Debug.Log(page);
 		buttons[0].SetActive(true);
