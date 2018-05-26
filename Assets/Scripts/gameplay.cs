@@ -20,7 +20,6 @@ public class gameplay : MonoBehaviour
 	public static int wave;
 	public int combo;
 	private ui ui;
-
 	void Awake()
 	{
 		ui = FindObjectOfType<ui>();
@@ -104,11 +103,13 @@ public class gameplay : MonoBehaviour
 					bonus++;
 					stone.Play();
 					hit.transform.gameObject.GetComponent<ai>().move = true;
+					hit.transform.gameObject.GetComponent<ai>().show(0);
                 }
 				if (hit.collider.CompareTag("chance"))
                 {
 					if(combo>=3)
 					{
+						hit.transform.gameObject.GetComponent<ai>().show(1);
 						tap.Play();
 						combo = 0;
 						DisplayCombo();
@@ -126,6 +127,7 @@ public class gameplay : MonoBehaviour
 							timer = timer - 5f;
 							stone.Play();
 							hit.transform.gameObject.GetComponent<ai>().move = true;
+							hit.transform.gameObject.GetComponent<ai>().show(2);
 						}
 						else
 						{
@@ -133,6 +135,7 @@ public class gameplay : MonoBehaviour
 							{
 								combo = 0;
 							}
+							hit.transform.gameObject.GetComponent<ai>().show(1);
 							tap.Play();
 							combo++;
 							DisplayCombo();
@@ -145,21 +148,12 @@ public class gameplay : MonoBehaviour
 				if(hit.collider.CompareTag("crap"))
 				{
 					field.crapstack--;
-					int index = Random.Range(0,10);
-					if(index==1)
-					{
-						tap.Play();
-						timer = timer + 10f;
-						hit.collider.tag = "tower";
-					}	
-					else
-					{
-						re++;
-						timer = timer - 10f;
-						score = score + 100;
-						stone.Play();
-						hit.transform.gameObject.GetComponent<ai>().move = true;
-					}
+					re++;
+					timer = timer - 10f;
+					score = score + 100;
+					stone.Play();
+					hit.transform.gameObject.GetComponent<ai>().move = true;
+					hit.transform.gameObject.GetComponent<ai>().show(3);
 				}
             }
         }
