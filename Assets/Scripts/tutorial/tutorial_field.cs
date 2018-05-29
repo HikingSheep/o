@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class field : MonoBehaviour 
+public class tutorial_field : MonoBehaviour 
 {
 	public GameObject[] nodes;
 	public static bool end;
@@ -12,10 +12,9 @@ public class field : MonoBehaviour
 
 	void Update()
 	{
-		if(gameplay.re>=5)
+		if(tutorial_gameplay.re>=5)
 		{
-			gameplay.wave++;
-			Debug.Log("here "+ gameplay.re);
+			tutorial_gameplay.wave++;
 			Reset();
 		}
 		if(end)
@@ -99,7 +98,7 @@ public class field : MonoBehaviour
 					{
 						nodes[newIndex].tag = "tower";
 					}
-					nodes[newIndex].transform.gameObject.GetComponent<ai>().moveUP = true;
+					nodes[newIndex].transform.gameObject.GetComponent<cube_ai>().moveUP = true;
 				}
 		}
 		else
@@ -134,7 +133,7 @@ public class field : MonoBehaviour
 							nodes[newIndex].tag = "tower";
 						}	
 
-						nodes[newIndex].transform.gameObject.GetComponent<ai>().moveUP = true;
+						nodes[newIndex].transform.gameObject.GetComponent<cube_ai>().moveUP = true;
 					}
 				}			
 		}
@@ -153,7 +152,7 @@ public class field : MonoBehaviour
 		{
 
 			nodes[newIndex].tag = "chance";
-		 	nodes[newIndex].transform.gameObject.GetComponent<ai>().moveUP = true;
+		 	nodes[newIndex].transform.gameObject.GetComponent<cube_ai>().moveUP = true;
 		}
 	}
 
@@ -168,7 +167,7 @@ public class field : MonoBehaviour
 		{
 
 			nodes[newIndex].tag = "crap";
-		 	nodes[newIndex].transform.gameObject.GetComponent<ai>().moveUP = true;
+		 	nodes[newIndex].transform.gameObject.GetComponent<cube_ai>().moveUP = true;
 		}
 	}
 
@@ -183,7 +182,7 @@ public class field : MonoBehaviour
 		{
 
 			nodes[newIndex].tag = "halp";
-		 	nodes[newIndex].transform.gameObject.GetComponent<ai>().moveUP = true;
+		 	nodes[newIndex].transform.gameObject.GetComponent<cube_ai>().moveUP = true;
 		}
 	}
 	void TotalReset()
@@ -191,8 +190,8 @@ public class field : MonoBehaviour
 		for (int i = 0; i < nodes.Length; i++)
 		{
 			nodes[i].tag = "node";
-			nodes[i].GetComponent<ai>().move =false;
-			nodes[i].GetComponent<ai>().moveUP =false;
+			nodes[i].GetComponent<cube_ai>().move =false;
+			nodes[i].GetComponent<cube_ai>().moveUP =false;
 			nodes[i].transform.position = new Vector3(nodes[i].transform.position.x, -23f+9.339844f,nodes[i].transform.position.z);
 		}
 	}
@@ -209,8 +208,8 @@ public class field : MonoBehaviour
 			if(nodes[i].CompareTag("tower"))
 			{
 				nodes[i].tag = "node";
-				nodes[i].GetComponent<ai>().move =false;
-				nodes[i].GetComponent<ai>().moveUP =false;
+				nodes[i].GetComponent<cube_ai>().move =false;
+				nodes[i].GetComponent<cube_ai>().moveUP =false;
 				nodes[i].transform.position = new Vector3(nodes[i].transform.position.x, -23f+9.339844f,nodes[i].transform.position.z);
 			}
 		}

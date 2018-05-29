@@ -120,7 +120,6 @@ public class gameplay : MonoBehaviour
 					else
 					{
 						int index = Random.Range(0,2);
-						Debug.Log(index);
 						if(index==1)
 						{
 							re++;
