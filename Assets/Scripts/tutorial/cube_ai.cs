@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class cube_ai : MonoBehaviour {
 
@@ -89,7 +90,15 @@ public class cube_ai : MonoBehaviour {
 		}
 	}
 
-	public void show(int value)
+	public IEnumerator show(int value)
+	{
+		visual.enabled = true;
+		visual.sprite = numbers[value];
+		yield return new WaitForSeconds(1f);
+		visual.enabled = false;
+	}
+
+	public void showVis(int value)
 	{
 		visual.enabled = true;
 		visual.sprite = numbers[value];

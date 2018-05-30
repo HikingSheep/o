@@ -9,6 +9,7 @@ public class tutorial_scenario : MonoBehaviour {
 	public static bool timer_on;
 	public static bool score_on;
 	public GameObject dark_background;
+	public GameObject dark_background2;
 	public GameObject score_display;
 	public GameObject timer_display;
 	public GameObject combo_display;
@@ -17,6 +18,7 @@ public class tutorial_scenario : MonoBehaviour {
 
 	public static bool pause;
 	public static bool showTimer;
+	public static bool combo;
 	public GameObject[] nodes;
 
 	public bool forWave = true;
@@ -26,10 +28,12 @@ public class tutorial_scenario : MonoBehaviour {
 		timer_on = false;
 		score_on = false;
 		showTimer = false;
+		combo = false;
 		score_display.SetActive(false);
 		timer_display.SetActive(false);
 		combo_display.SetActive(false);
 		dark_background.SetActive(false);
+		dark_background2.SetActive(false);
 		pointer.SetActive(false);
 
 		foreach (GameObject i in text_pieces)
@@ -40,7 +44,6 @@ public class tutorial_scenario : MonoBehaviour {
 	
 	void Update () 
 	{	
-		Debug.Log(stage);
 		switch (stage)
 		{
 			case 0:
@@ -82,6 +85,11 @@ public class tutorial_scenario : MonoBehaviour {
 			break;
 			case 5:
 				//bonus points
+				if(combo)
+				{
+					dark_background2.SetActive(true);
+					combo_display.SetActive(true);
+				}
 			break;
 			case 6:
 				//red + timer (-10s)
@@ -143,6 +151,12 @@ public class tutorial_scenario : MonoBehaviour {
 				GreensOnly();	
 			}
 		}
+	}
+
+	public void ComboBG()
+	{
+		Debug.Log("test");
+		dark_background2.SetActive(false);
 	}
 
 	public void wave_explained()

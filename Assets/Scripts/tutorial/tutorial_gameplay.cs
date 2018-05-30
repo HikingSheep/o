@@ -111,7 +111,7 @@ public class tutorial_gameplay : MonoBehaviour
                     }
                     stone.Play();
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
-                    hit.transform.gameObject.GetComponent<cube_ai>().show(0);
+                    hit.transform.gameObject.GetComponent<cube_ai>().showVis(0);
                 }
                 if (tutorial_scenario.stage == 5)
                 {
@@ -121,18 +121,19 @@ public class tutorial_gameplay : MonoBehaviour
                         timer = timer - 5f;
                         stone.Play();
                         hit.transform.gameObject.GetComponent<cube_ai>().move = true;
-                        hit.transform.gameObject.GetComponent<cube_ai>().show(2);
-                        Debug.Log(tutorial_scenario.stage);
+                        hit.transform.gameObject.GetComponent<cube_ai>().showVis(2);
                     }
                     if (hit.collider.CompareTag("chance2"))
                     {
                         tutorial_scenario.showTimer = true;
-                        hit.transform.gameObject.GetComponent<cube_ai>().show(1);
+                        tutorial_scenario.combo = true;
                         tap.Play();
+                        combo++;
+                        DisplayCombo();
                         timer = timer + 5f;
                         score = score + 10;
                         hit.collider.tag = "tower";
-                        Debug.Log(tutorial_scenario.stage);
+                        StartCoroutine(hit.transform.gameObject.GetComponent<cube_ai>().show(1));
                     }
                 }
 
@@ -148,7 +149,7 @@ public class tutorial_gameplay : MonoBehaviour
                     }
                     stone.Play();
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
-                    hit.transform.gameObject.GetComponent<cube_ai>().show(3);
+                    hit.transform.gameObject.GetComponent<cube_ai>().showVis(3);
                 }
             }
         }

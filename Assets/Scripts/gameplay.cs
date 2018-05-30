@@ -53,7 +53,6 @@ public class gameplay : MonoBehaviour
 		}
 		if(re==5)
 		{
-			timer++;
 			re=0;
 		}
 		if(score <=0)
