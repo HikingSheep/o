@@ -69,21 +69,6 @@ public class tutorial_gameplay : MonoBehaviour
             tutorial_scenario.stage = 4;
         }
 
-        if (tutorial_scenario.timer_on)
-        {
-            if (!tutorial_scenario.pause)
-            {
-                timer -= Time.deltaTime;
-            }
-
-            if (timer <= 0)
-            {
-                timer = 0;
-                field.end = true;
-                ui.MainMenu.SetActive(true);
-            }
-        }
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Input.GetMouseButtonUp(0))
@@ -102,13 +87,10 @@ public class tutorial_gameplay : MonoBehaviour
                 {
                     tap.Play();
                 }
-                if (hit.collider.CompareTag("tower") || hit.collider.CompareTag("halp"))
+                if (hit.collider.CompareTag("tower"))
                 {
-                    if (tutorial_scenario.score_on)
-                    {
-                        score++;
-                        re++;
-                    }
+                    score++;
+                    re++;
                     stone.Play();
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
                     hit.transform.gameObject.GetComponent<cube_ai>().showVis(0);
@@ -117,7 +99,8 @@ public class tutorial_gameplay : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("chance"))
                     {
-                        tutorial_scenario.showTimer = true;
+                        re=1;
+                        tutorial_scenario.timer_on = true;
                         timer = timer - 5f;
                         stone.Play();
                         hit.transform.gameObject.GetComponent<cube_ai>().move = true;
@@ -125,7 +108,7 @@ public class tutorial_gameplay : MonoBehaviour
                     }
                     if (hit.collider.CompareTag("chance2"))
                     {
-                        tutorial_scenario.showTimer = true;
+                        re=2;
                         tutorial_scenario.combo = true;
                         tap.Play();
                         combo++;
@@ -145,8 +128,6 @@ public class tutorial_gameplay : MonoBehaviour
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
                     hit.transform.gameObject.GetComponent<cube_ai>().showVis(3);
                     hit.transform.gameObject.GetComponent<cube_ai>().moveUP = false;
-                    tutorial_scenario.stage=7;
-                    tutorial_scenario.for_back = false;
                 }
             }
         }
