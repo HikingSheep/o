@@ -63,7 +63,7 @@ public class tutorial_gameplay : MonoBehaviour
             re = 0;
         }
 
-        if (score >= 15)
+        if (score >= 15 && tutorial_scenario.stage!=6 && tutorial_scenario.stage!=7)
         {
             score = 0;
             tutorial_scenario.stage = 4;
@@ -139,17 +139,14 @@ public class tutorial_gameplay : MonoBehaviour
 
                 if (hit.collider.CompareTag("crap"))
                 {
-                    if (tutorial_scenario.timer_on)
-                    {
-                        timer = timer - 10f;
-                    }
-                    if (tutorial_scenario.score_on)
-                    {
-                        score = score + 100;
-                    }
+                    timer = timer - 10f;
+                    score = score + 100;
                     stone.Play();
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
                     hit.transform.gameObject.GetComponent<cube_ai>().showVis(3);
+                    hit.transform.gameObject.GetComponent<cube_ai>().moveUP = false;
+                    tutorial_scenario.stage=7;
+                    tutorial_scenario.for_back = false;
                 }
             }
         }

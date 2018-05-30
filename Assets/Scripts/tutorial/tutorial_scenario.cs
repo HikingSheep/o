@@ -20,8 +20,8 @@ public class tutorial_scenario : MonoBehaviour {
 	public static bool showTimer;
 	public static bool combo;
 	public GameObject[] nodes;
-
-	public bool forWave = true;
+	public static bool for_back;
+	public bool forWave;
 
 	void Start () 
 	{
@@ -29,6 +29,8 @@ public class tutorial_scenario : MonoBehaviour {
 		score_on = false;
 		showTimer = false;
 		combo = false;
+		forWave = false;
+		for_back = false;
 		score_display.SetActive(false);
 		timer_display.SetActive(false);
 		combo_display.SetActive(false);
@@ -70,29 +72,37 @@ public class tutorial_scenario : MonoBehaviour {
 				//try getting points by pressing on greens
 			break;
 			case 4:
+				test_block[1].tag = "chance";
+				test_block[2].tag = "chance2";
 				foreach (GameObject i in nodes)
 				{
-					if(i.CompareTag("tower"))
+					if(i.tag == "tower")
 					{
 						i.GetComponent<cube_ai>().move = true;
 					}
 				}
-				test_block[1].tag = "chance";
-				test_block[2].tag = "chance2";
 				test_block[1].GetComponent<cube_ai>().moveUP = true;
 				test_block[2].GetComponent<cube_ai>().moveUP = true;
 				stage = 5;
 			break;
 			case 5:
 				//bonus points
-				if(combo)
+				if(combo&&!for_back)
 				{
 					dark_background2.SetActive(true);
 					combo_display.SetActive(true);
 				}
 			break;
 			case 6:
-				//red + timer (-10s)
+				test_block[0].tag = "crap";
+				test_block[0].GetComponent<cube_ai>().moveUP = true;
+			break;
+			case 7:
+				if(!for_back)
+				{
+					dark_background2.SetActive(true);
+				}
+				Debug.Log(stage);
 			break;
 		}
 
@@ -126,6 +136,11 @@ public class tutorial_scenario : MonoBehaviour {
 		{
 			timer_display.SetActive(true);
 		}
+
+		if(stage==5&&(test_block[1].tag=="node"&&test_block[2].tag=="node"))
+		{
+			stage = 6;
+		}
 	}
 
 	public void bg()
@@ -155,7 +170,7 @@ public class tutorial_scenario : MonoBehaviour {
 
 	public void ComboBG()
 	{
-		Debug.Log("test");
+		for_back = true;
 		dark_background2.SetActive(false);
 	}
 

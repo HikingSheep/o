@@ -34,15 +34,11 @@ public class cube_ai : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		if(this.CompareTag("tower")||this.CompareTag("halp"))
+		if(this.CompareTag("tower"))
 		{
 			nodeMark.GetComponent<Renderer>().material = marks[0]; 
 		}
-		if(this.CompareTag("chance"))
-		{
-			nodeMark.GetComponent<Renderer>().material = marks[1]; 
-		}
-		if(this.CompareTag("chance2"))
+		if(this.CompareTag("chance")||this.CompareTag("chance2"))
 		{
 			nodeMark.GetComponent<Renderer>().material = marks[1]; 
 		}
@@ -83,7 +79,7 @@ public class cube_ai : MonoBehaviour {
 
 	void Update()
 	{
-		if(field.end||this.CompareTag("node"))
+		if(this.CompareTag("node"))
 		{
 			nodeMark.GetComponent<Renderer>().material = marks[3]; 
 			visual.enabled = false;
