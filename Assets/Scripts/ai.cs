@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ai : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class ai : MonoBehaviour {
 	private Vector3 targetUP;
 	private GameObject mark;
 	private GameObject nodeMark;
-	public Material[] marks;
+	public Sprite[] marks;
 	public GameObject pop;
 
 	private GameObject visuals;
@@ -22,7 +23,7 @@ public class ai : MonoBehaviour {
 		visuals = mark.transform.GetChild(1).gameObject;
 		targetDOWN = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
 		targetUP = new Vector3(this.transform.position.x,this.transform.position.y+1f,this.transform.position.z);
-		nodeMark.GetComponent<Renderer>().material = marks[3]; 
+		nodeMark.GetComponent<SpriteRenderer>().sprite = marks[3]; 
 	}
 
 	void Start()
@@ -35,15 +36,15 @@ public class ai : MonoBehaviour {
 	{
 		if(this.CompareTag("tower")||this.CompareTag("halp"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[0]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[0]; 
 		}
 		if(this.CompareTag("chance"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[1]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[1]; 
 		}
 		if(this.CompareTag("crap"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[2]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[2]; 
 		}
 		if(move)
 		{
@@ -76,7 +77,7 @@ public class ai : MonoBehaviour {
 	{
 		if(field.end||this.CompareTag("node"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[3]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[3]; 
 			visual.enabled = false;
 		}
 	}
@@ -89,5 +90,13 @@ public class ai : MonoBehaviour {
 		// 1 - 5s 10p
 		// 2 - -5s
 		// 3 - 100p -10s
+	}
+
+	public IEnumerator showR(int value)
+	{
+		visual.enabled = true;
+		visual.sprite = numbers[value];
+		yield return new WaitForSeconds(1f);
+		visual.enabled = false;
 	}
 }

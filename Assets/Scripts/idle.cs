@@ -33,14 +33,10 @@ public class idle : MonoBehaviour
 			sound.sprite = volume[1];
 			AudioListener.volume = 1;
 		}
-		if(PlayerPrefs.HasKey("tutorial"))
-		{
-			tutorialManager.learn = true;
-		}
 	}
 	public void Play()
 	{
-		if(!tutorialManager.learn)
+		if(!PlayerPrefs.HasKey("tutorial"))
 		{
 			SceneManager.LoadScene(2);
 		}

@@ -19,12 +19,12 @@ public class tutorial_gameplay : MonoBehaviour
     public static int re;
     public static int wave;
     public int combo;
-    private ui ui;
+
+    public GameObject sidepanel;
 
 
     void Awake()
     {
-        ui = FindObjectOfType<ui>();
         tap = this.GetComponent<AudioSource>();
     }
 
@@ -63,12 +63,14 @@ public class tutorial_gameplay : MonoBehaviour
             re = 0;
         }
 
-        if (score >= 15 && tutorial_scenario.stage!=6 && tutorial_scenario.stage!=7)
+        if (score >= 15 && tutorial_scenario.stage!=6 && tutorial_scenario.stage!=7 && tutorial_scenario.stage!=8)
         {
             score = 0;
+            sidepanel.GetComponent<Animator>().SetTrigger("close");
             tutorial_scenario.stage = 4;
         }
 
+        sidepanel.GetComponentInChildren<Text>().text = score.ToString("0");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Input.GetMouseButtonUp(0))
@@ -112,7 +114,6 @@ public class tutorial_gameplay : MonoBehaviour
                         tutorial_scenario.combo = true;
                         tap.Play();
                         combo++;
-                        DisplayCombo();
                         timer = timer + 5f;
                         score = score + 10;
                         hit.collider.tag = "tower";
@@ -122,33 +123,14 @@ public class tutorial_gameplay : MonoBehaviour
 
                 if (hit.collider.CompareTag("crap"))
                 {
+                    tutorial_scenario.stage++;
                     timer = timer - 10f;
                     score = score + 100;
                     stone.Play();
                     hit.transform.gameObject.GetComponent<cube_ai>().move = true;
                     hit.transform.gameObject.GetComponent<cube_ai>().showVis(3);
-                    hit.transform.gameObject.GetComponent<cube_ai>().moveUP = false;
                 }
             }
         }
-    }
-
-    void DisplayCombo()
-    {
-        switch (combo)
-        {
-            case 0:
-                comboDisplay.SetTrigger("0");
-                break;
-            case 1:
-                comboDisplay.SetTrigger("1");
-                break;
-            case 2:
-                comboDisplay.SetTrigger("2");
-                break;
-            case 3:
-                comboDisplay.SetTrigger("3");
-                break;
-        }
-    }
+    }   
 }

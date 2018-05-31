@@ -10,7 +10,7 @@ public class cube_ai : MonoBehaviour {
 	private Vector3 targetUP;
 	private GameObject mark;
 	private GameObject nodeMark;
-	public Material[] marks;
+	public Sprite[] marks;
 	public GameObject pop;
 
 	private GameObject visuals;
@@ -23,7 +23,7 @@ public class cube_ai : MonoBehaviour {
 		visuals = mark.transform.GetChild(1).gameObject;
 		targetDOWN = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
 		targetUP = new Vector3(this.transform.position.x,this.transform.position.y+1f,this.transform.position.z);
-		nodeMark.GetComponent<Renderer>().material = marks[3]; 
+		nodeMark.GetComponent<SpriteRenderer>().sprite = marks[3]; 
 	}
 
 	void Start()
@@ -36,15 +36,15 @@ public class cube_ai : MonoBehaviour {
 	{
 		if(this.CompareTag("tower"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[0]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[0];  
 		}
 		if(this.CompareTag("chance")||this.CompareTag("chance2"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[1]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[1]; 
 		}
 		if(this.CompareTag("crap"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[2]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[2]; 
 		}
 		if(this.CompareTag("node")&&this.transform.position==targetUP)
 		{
@@ -75,13 +75,21 @@ public class cube_ai : MonoBehaviour {
 				this.GetComponent<Collider>().enabled = true;
 			}
 		}
+		if(move)
+		{
+			moveUP=false;
+		}
+		if(moveUP)
+		{
+			move = false;
+		}
 	}
 
 	void Update()
 	{
 		if(this.CompareTag("node"))
 		{
-			nodeMark.GetComponent<Renderer>().material = marks[3]; 
+			nodeMark.GetComponent<SpriteRenderer>().sprite = marks[3];   
 			visual.enabled = false;
 		}
 	}

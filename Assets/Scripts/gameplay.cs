@@ -51,6 +51,10 @@ public class gameplay : MonoBehaviour
 			field.end = true;
 			ui.MainMenu.SetActive(true);
 		}
+		if(timer > 60)
+		{
+			timer = 60;
+		}
 		if(re==5)
 		{
 			re=0;
@@ -108,7 +112,7 @@ public class gameplay : MonoBehaviour
                 {
 					if(combo>=3)
 					{
-						hit.transform.gameObject.GetComponent<ai>().show(1);
+						StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
 						tap.Play();
 						combo = 0;
 						DisplayCombo();
@@ -133,7 +137,7 @@ public class gameplay : MonoBehaviour
 							{
 								combo = 0;
 							}
-							hit.transform.gameObject.GetComponent<ai>().show(1);
+							StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
 							tap.Play();
 							combo++;
 							DisplayCombo();
