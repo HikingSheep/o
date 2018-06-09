@@ -69,7 +69,6 @@ public class gameplay : MonoBehaviour
 			if(combo<3)
 			{
 				combo++;
-				DisplayCombo();
 			}
 			bonus = 0;
 		}
@@ -116,7 +115,6 @@ public class gameplay : MonoBehaviour
 						StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
 						tap.Play();
 						combo = 0;
-						DisplayCombo();
 						timer = timer + 5f;
 						score = score + 10;
 						hit.collider.tag = "tower";
@@ -141,7 +139,6 @@ public class gameplay : MonoBehaviour
 							StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
 							tap.Play();
 							combo++;
-							DisplayCombo();
 							timer = timer + 5f;
 							score = score + 10;
 							hit.collider.tag = "tower";
@@ -160,22 +157,29 @@ public class gameplay : MonoBehaviour
 				}
             }
         }
+		DisplayCombo();
 	}
 	void DisplayCombo()
 	{
 		switch(combo)
 		{
 			case 0:
-				comboDisplay.SetTrigger("0");
+				comboDisplay.SetBool("1",false);
+				comboDisplay.SetBool("2",false);
+				comboDisplay.SetBool("3",false);
+				comboDisplay.SetBool("0",true);
 				break;			
 			case 1:
-				comboDisplay.SetTrigger("1");
+				comboDisplay.SetBool("1",true);
 				break;
 			case 2:
-				comboDisplay.SetTrigger("2");
+				comboDisplay.SetBool("2",true);
 				break;
 			case 3:
-				comboDisplay.SetTrigger("3");
+				comboDisplay.SetBool("3",true);
+				comboDisplay.SetBool("1",false);
+				comboDisplay.SetBool("2",false);
+				comboDisplay.SetBool("0",false);
 				break;
 		}
 	}
