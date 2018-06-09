@@ -15,7 +15,6 @@ public class field : MonoBehaviour
 		if(gameplay.re>=5)
 		{
 			gameplay.wave++;
-			Debug.Log("here "+ gameplay.re);
 			Reset();
 		}
 		if(end)
