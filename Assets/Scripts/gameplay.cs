@@ -51,6 +51,10 @@ public class gameplay : MonoBehaviour
 			field.end = true;
 			ui.MainMenu.SetActive(true);
 		}
+		if(timer > 0 && !field.wait)
+		{
+			DisplayCombo();
+		}
 		if(timer > 60)
 		{
 			timer = 60;
@@ -157,30 +161,36 @@ public class gameplay : MonoBehaviour
 				}
             }
         }
-		DisplayCombo();
 	}
 	void DisplayCombo()
 	{
-		switch(combo)
+		if(comboDisplay.gameObject.activeSelf == true)
 		{
-			case 0:
-				comboDisplay.SetBool("1",false);
-				comboDisplay.SetBool("2",false);
-				comboDisplay.SetBool("3",false);
-				comboDisplay.SetBool("0",true);
-				break;			
-			case 1:
-				comboDisplay.SetBool("1",true);
-				break;
-			case 2:
-				comboDisplay.SetBool("2",true);
-				break;
-			case 3:
-				comboDisplay.SetBool("3",true);
-				comboDisplay.SetBool("1",false);
-				comboDisplay.SetBool("2",false);
-				comboDisplay.SetBool("0",false);
-				break;
+			switch(combo)
+			{
+				case 0:
+					comboDisplay.SetBool("1",false);
+					comboDisplay.SetBool("2",false);
+					comboDisplay.SetBool("3",false);
+					comboDisplay.SetBool("0",true);
+					break;			
+				case 1:
+					comboDisplay.SetBool("1",true);
+					break;
+				case 2:
+					comboDisplay.SetBool("2",true);
+					break;
+				case 3:
+					comboDisplay.SetBool("3",true);
+					comboDisplay.SetBool("1",false);
+					comboDisplay.SetBool("2",false);
+					comboDisplay.SetBool("0",false);
+					break;
+			}
+		}
+		else
+		{
+			return;
 		}
 	}
 	public void Play()
