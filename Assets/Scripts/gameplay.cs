@@ -51,7 +51,7 @@ public class gameplay : MonoBehaviour
 			field.end = true;
 			ui.MainMenu.SetActive(true);
 		}
-		if(timer > 0 && !field.wait)
+		if(timer >= 1 && !field.wait)
 		{
 			DisplayCombo();
 		}
@@ -125,27 +125,55 @@ public class gameplay : MonoBehaviour
 					}
 					else
 					{
-						int index = Random.Range(0,2);
-						if(index==1)
+						if(score < 1000)
 						{
-							re++;
-							timer = timer - 5f;
-							stone.Play();
-							hit.transform.gameObject.GetComponent<ai>().move = true;
-							hit.transform.gameObject.GetComponent<ai>().show(2);
-						}
-						else
-						{
-							if(combo>=3)
+							int index = Random.Range(0,3);
+							if(index==1)
 							{
-								combo = 0;
+								re++;
+								timer = timer - 5f;
+								stone.Play();
+								hit.transform.gameObject.GetComponent<ai>().move = true;
+								hit.transform.gameObject.GetComponent<ai>().show(2);
 							}
-							StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
-							tap.Play();
-							combo++;
-							timer = timer + 5f;
-							score = score + 10;
-							hit.collider.tag = "tower";
+							else
+							{
+								if(combo>=3)
+								{
+									combo = 0;
+								}
+								StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
+								tap.Play();
+								combo++;
+								timer = timer + 5f;
+								score = score + 10;
+								hit.collider.tag = "tower";
+							}
+						}
+						if(score > 1000)
+						{
+							int index = Random.Range(0,2);
+							if(index==1)
+							{
+								re++;
+								timer = timer - 5f;
+								stone.Play();
+								hit.transform.gameObject.GetComponent<ai>().move = true;
+								hit.transform.gameObject.GetComponent<ai>().show(2);
+							}
+							else
+							{
+								if(combo>=3)
+								{
+									combo = 0;
+								}
+								StartCoroutine(hit.transform.gameObject.GetComponent<ai>().showR(1));
+								tap.Play();
+								combo++;
+								timer = timer + 5f;
+								score = score + 10;
+								hit.collider.tag = "tower";
+							}							
 						}
 					}
                 }

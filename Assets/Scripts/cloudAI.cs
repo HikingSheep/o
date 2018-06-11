@@ -21,15 +21,15 @@ public class cloudAI : MonoBehaviour {
 		this.transform.localScale = new Vector3(value,value,value);
 		if(gameplay.score >= 1500)
 		{
-			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(50,150));	
+			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(100,150));	
 		}
 		if(gameplay.score >= 3000)
 		{
-			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(75,200));	
+			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(150,200));	
 		}
 		else
 		{
-			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(10,75));	
+			this.GetComponent<Image>().color = new Color32(255, 255, 255, (byte)Random.Range(50,100));	
 		}
 	}
 }

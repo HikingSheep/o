@@ -17,6 +17,8 @@ public class ui : MonoBehaviour {
 	public GameObject gameplayUI;
 	public Text display;
 	public Text displayBest;
+	public string[] tips;
+	public Text ForTips;
 	void Awake () 
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -35,6 +37,8 @@ public class ui : MonoBehaviour {
 		{
 			AudioListener.volume = 1;
 		}
+
+		InvokeRepeating("Tip",1f,10f);
 	}
 	void FixedUpdate() 
 	{
@@ -98,6 +102,30 @@ public class ui : MonoBehaviour {
 	public void Home()
 	{
 		SceneManager.LoadScene(0);
+	}
+
+
+
+	int last = 0;
+	void Tip()
+	{
+		if(field.end)
+		{
+			ForTips.text ="";
+		}
+		else
+		{
+			int index = Random.Range(0,tips.Length);
+			if(index==last)
+			{
+				Tip();
+			}
+			else
+			{
+				last = index;
+				ForTips.text = "Tip: " + tips[index];
+			}
+		}
 	}
 
 	IEnumerator PlayButton()
