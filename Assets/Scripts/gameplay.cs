@@ -125,7 +125,7 @@ public class gameplay : MonoBehaviour
 					}
 					else
 					{
-						if(score < 1000)
+						if(score < 750)
 						{
 							int index = Random.Range(0,3);
 							if(index==1)
@@ -150,7 +150,7 @@ public class gameplay : MonoBehaviour
 								hit.collider.tag = "tower";
 							}
 						}
-						if(score > 1000)
+						if(score > 750)
 						{
 							int index = Random.Range(0,2);
 							if(index==1)
@@ -197,16 +197,16 @@ public class gameplay : MonoBehaviour
 			switch(combo)
 			{
 				case 0:
-					comboDisplay.SetBool("1",false);
-					comboDisplay.SetBool("2",false);
-					comboDisplay.SetBool("3",false);
 					comboDisplay.SetBool("0",true);
+					comboDisplay.SetBool("1",false);
 					break;			
 				case 1:
 					comboDisplay.SetBool("1",true);
+					comboDisplay.SetBool("2",false);
 					break;
 				case 2:
 					comboDisplay.SetBool("2",true);
+					comboDisplay.SetBool("3",false);					
 					break;
 				case 3:
 					comboDisplay.SetBool("3",true);

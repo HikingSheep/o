@@ -19,6 +19,7 @@ public class ui : MonoBehaviour {
 	public Text displayBest;
 	public string[] tips;
 	public Text ForTips;
+	public Toggle tog;
 	void Awake () 
 	{
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -38,7 +39,20 @@ public class ui : MonoBehaviour {
 			AudioListener.volume = 1;
 		}
 
-		InvokeRepeating("Tip",1f,10f);
+		if(PlayerPrefs.HasKey("toggle"))
+		{
+			int value = PlayerPrefs.GetInt("toggle");
+			if(value==1)
+			{
+				ForTips.gameObject.SetActive(true);
+				tog.isOn=true;
+			}
+			else
+			{
+				ForTips.gameObject.SetActive(false);
+				tog.isOn=false;
+			}
+		}
 	}
 	void FixedUpdate() 
 	{
@@ -97,6 +111,10 @@ public class ui : MonoBehaviour {
 	public void Play()
 	{
 		StartCoroutine(PlayButton());
+		if(ForTips.IsActive())
+		{
+			InvokeRepeating("Tip",1f,10f);
+		}
 	}
 
 	public void Home()
@@ -125,6 +143,20 @@ public class ui : MonoBehaviour {
 				last = index;
 				ForTips.text = "Tip: " + tips[index];
 			}
+		}
+	}
+
+	public void TipToggle()
+	{
+		if(tog.isOn)
+		{
+			ForTips.gameObject.SetActive(true);
+			PlayerPrefs.SetInt("toggle",1);
+		}
+		else
+		{
+			ForTips.gameObject.SetActive(false);
+			PlayerPrefs.SetInt("toggle",0);
 		}
 	}
 
