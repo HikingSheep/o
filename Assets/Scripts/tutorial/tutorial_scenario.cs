@@ -34,6 +34,8 @@ public class tutorial_scenario : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("run");
+        stage = 0;
         timer_on = false;
         showTimer = false;
         combo = false;
@@ -220,6 +222,7 @@ public class tutorial_scenario : MonoBehaviour
         {
             AnyKey.SetActive(false);
         }
+        
     }
 
     public void next_stage()
@@ -272,12 +275,32 @@ public class tutorial_scenario : MonoBehaviour
 	public void Play()
 	{
 		PlayerPrefs.SetString("tutorial","true");
+
+        tutorial_gameplay.re = 0;
+        stage = 0;
+        tutorial_gameplay.score = 0;
+
+        timer_on = false;
+        showTimer = false;
+        combo = false;
+        for_back = false;
+
 		SceneManager.LoadScene(1);
 	}
 
     public void Menu()
     {
         PlayerPrefs.SetString("tutorial","true");
+
+        tutorial_gameplay.re = 0;
+        stage = 0;
+        tutorial_gameplay.score = 0;
+
+        timer_on = false;
+        showTimer = false;
+        combo = false;
+        for_back = false;
+
 		SceneManager.LoadScene(0);
     }
 
